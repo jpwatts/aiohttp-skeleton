@@ -1,0 +1,12 @@
+skeleton:
+  build: "."
+  command: "skeleton server"
+  environment:
+    # SKELETON_SERVER_DEBUG: "1"
+    SKELETON_SERVER_LOGGING: "debug"
+    SKELETON_SERVER_ADDRESS: "0.0.0.0"
+    SKELETON_SERVER_PORT: "8000"
+  ports:
+    - "8000:8000"
+  volumes:
+    - ".:/skeleton"
