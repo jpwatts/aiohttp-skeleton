@@ -63,7 +63,7 @@ class CommentEvent(BaseEvent):
         """Return an encoded event source comment message."""
         text_buffer = io.StringIO()
 
-        message = self.message
+        message = str(self.message)
         if message:
             for line in message.splitlines():
                 text_buffer.write(": {}\n".format(line))

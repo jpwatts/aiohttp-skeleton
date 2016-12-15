@@ -9,6 +9,9 @@ from aiohttp import web
 from .events import CommentEvent, RetryEvent
 
 
+__all__ = ['Server']
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -75,9 +78,13 @@ class Server:
             CommentEvent("Howdy {}!".format(client_id)).dump(response)
             RetryEvent(10).dump(response)
 
+            i = 0
+            CommentEvent(i).dump(response)
+
             await response.drain()
 
             while True:
+                i += 1
                 try:
                     event = await asyncio.wait_for(
                         queue.get(),
@@ -85,7 +92,7 @@ class Server:
                     )
                 except asyncio.TimeoutError:
                     # Send something so the connection doesn't time out.
-                    event = CommentEvent()
+                    event = CommentEvent(i)
                 event.dump(response)
                 await response.drain()
 
