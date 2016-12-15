@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 import os
 
 
@@ -14,11 +14,8 @@ def pip_requirements(extra=None):
 
 
 setup(
-    name="Skeleton",
+    name="skeleton",
     version="0.0.1",
-    description="Skeleton",
-    author="Joel Watts",
-    author_email="joel@joelwatts.com",
     url="http://github.com/jpwatts/aiohttp-skeleton",
     packages=[
         "skeleton",
